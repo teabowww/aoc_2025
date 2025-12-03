@@ -9,7 +9,7 @@ def id_valid(id_num):
 	first_half = id_num[0:id_half_len]
 	second_half = id_num[id_half_len:]
 
-	return first_half != second_hal
+	return first_half != second_half
 
 id_sum = 0
 
