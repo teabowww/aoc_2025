@@ -35,6 +35,7 @@ def id_valid(id_num):
 
 	for i in range(max_pattern_len, 0, -1):
 		if string_repeats(id_num, i):
+			print(i)
 			return False
 
 	return True
