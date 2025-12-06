@@ -4,15 +4,26 @@ class BatteryBank:
 
 	def joltage(self, n):
 		joltage = 0
+		start_index = 0
+		end_index = -n
 
-		first_digit = max(self.batteries[0:-n])
-		index = self.batteries.index(first_digit)
-		second_digit = max(self.batteries[index+1:])
+		for i in range(n+1):
+			if end_index == 0:
+				end_index = None
 
-		joltage = first_digit * 10 + second_digit
+			digit = max(self.batteries[start_index:end_index])
+			joltage += digit * pow(10, n - i)
+
+			start_index = self.batteries.index(digit) + 1
+			if end_index: end_index += 1
+
+			print(start_index, end_index)
+
 		return joltage
 
-with open("input.txt") as file:
+input_file = "sample.txt"
+
+with open(input_file) as file:
 	input_text = file.read()
 	banks = input_text.split("\n")
 
@@ -21,7 +32,11 @@ total_joltage = 0
 for bank in banks:
 	battery_bank = BatteryBank(bank)
 
-	total_joltage += battery_bank.joltage(1)
+	joltage = battery_bank.joltage(11)
+
+	total_joltage += joltage
+
+	print(bank, joltage)
 
 print(total_joltage)
 
